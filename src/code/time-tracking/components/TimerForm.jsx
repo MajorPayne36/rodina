@@ -15,9 +15,11 @@ const TimerForm = ({
     const [titles, settitle] = useState(id ? title : '');
     const [projects, setproject] = useState(id ? project : '');
 
-    const handleSubmit= () => {
+    const handleSubmit = () => {
         onFormSubmit({
-            id, titles, projects,
+            id,
+            title: titles,
+            project: projects,
         });
     }
 
