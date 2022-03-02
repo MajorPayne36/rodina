@@ -24,12 +24,28 @@ function TimeTrackingApp() {
         },
     ]);
 
-    const handleFormSubmit = () => {
+    const handleFormSubmit = attrs => {
+        settimers(timers.map(timer => {
+            if (timer.id === attrs.id) {
+                const { title, project } = attrs;
 
+                return {
+                    ...timer,
+                    title,
+                    project,
+                };
+            }
+
+            return timer;
+        }));
     }
 
     const handleCreateFormSubmit = (timer) => {
         settimers([newTimer(timer), ...timers]);
+    }
+
+    const handleRemovePress = timerId =>{
+        settimers(timers.filter(timer => timer.id !== timerId));
     }
 
     return (
@@ -53,6 +69,8 @@ function TimeTrackingApp() {
                         project={project}
                         elapsed={elapsed}
                         isRunning={isRunning}
+                        onFormSubmit={handleFormSubmit}
+                        onRemovePress={handleRemovePress}
                     />
                 ))}
 
