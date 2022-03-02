@@ -1,15 +1,38 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 // * Import local components
 import TimerForm from './TimerForm'
 import TimerButton from './TimerButton'
 
 
-const ToggleableTimerForm = ({isOpen}) => {
+const ToggleableTimerForm = ({onFormSubmit}) => {
+
+  const [isOpen, setisOpen] = useState(false);
+
+  const handleFormOpen = () => {
+    setisOpen(true);
+  }
+
+  const handleFormClose = () => {
+    setisOpen(false);
+  }
+
+  const handleFormSubmit = (timer) => {
+    onFormSubmit(timer);
+    setisOpen(false);
+  }
+
   return (
     <View style={[styles.container, !isOpen && styles.buttonPadding]}>
-      {isOpen ? <TimerForm /> : <TimerButton title='+' color='black' />}
+      {isOpen ? (
+        <TimerForm 
+          onFormClose={handleFormClose}
+          onFormSubmit={handleFormSubmit}
+        />
+      ) : (
+        <TimerButton title='+' color='black' onPress={handleFormOpen} />
+      )}
     </View>
   )
 }
@@ -17,11 +40,11 @@ const ToggleableTimerForm = ({isOpen}) => {
 export default ToggleableTimerForm
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     paddingVertical: 10,
   },
 
-  buttonPadding:{
+  buttonPadding: {
     paddingHorizontal: 15,
   },
 

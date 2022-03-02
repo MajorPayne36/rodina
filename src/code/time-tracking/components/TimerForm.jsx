@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 // * Import local components
 import TimerButton from './TimerButton';
@@ -8,37 +8,49 @@ const TimerForm = ({
     id,
     title,
     project,
+    onFormClose,
+    onFormSubmit,
 }) => {
     const submitText = id ? 'Update' : 'Create';
+    const [titles, settitle] = useState(id ? title : '');
+    const [projects, setproject] = useState(id ? project : '');
+
+    const handleSubmit= () => {
+        onFormSubmit({
+            id, titles, projects,
+        });
+    }
 
     return (
         <View style={styles.formContainer}>
 
             <View style={styles.attributeContainer} >
-                <Text style={styles.textInputTitle}>Title</Text>
+                <Text style={styles.textInputTitle}>{titles}</Text>
                 <View style={styles.textInputContainer}>
                     <TextInput
                         style={styles.textInput}
                         underlineColorAndroid='transparent'
-                        defaultValue={title}
+                        onChangeText={settitle}
+                        value={titles}
                     />
                 </View>
             </View>
 
             <View style={styles.attributeContainer}>
-                <Text style={styles.textInputTitle}>Project</Text>
+                <Text style={styles.textInputTitle}>{projects}</Text>
                 <View style={styles.textInputContainer}>
                     <TextInput
                         style={styles.textInput}
                         underlineColorAndroid='transparent'
-                        defaultValue={project}
+                        onChangeText={setproject}
+                        value={projects}
                     />
                 </View>
             </View>
 
             <View style={styles.buttonGroup}>
-                <TimerButton small color='#21BA45' title={submitText} />
-                <TimerButton small color='#DB2828' title='Cancel' />
+                <TimerButton small color='#21BA45' title={submitText} onPress={handleSubmit} />
+                <TimerButton small color='#DB2828' title='Cancel' onPress={onFormClose} />
             </View>
         </View>
     )

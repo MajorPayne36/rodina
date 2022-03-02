@@ -1,7 +1,6 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { useState } from 'react'
 
-// ** Local components import
+// * Local import
 import TimerForm from './TimerForm';
 import Timer from './Timer';
 
@@ -11,8 +10,8 @@ function EditableTimer({
   project,
   elapsed,
   isRunning,
-  editFormOpen,
 }) {
+  const [editFormOpen, seteditFormOpen] = useState(false);
   if (editFormOpen) {
     return (
       <TimerForm
