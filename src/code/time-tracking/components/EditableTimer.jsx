@@ -1,12 +1,37 @@
 import React from 'react'
 import { View } from 'react-native'
 
-function EditableTimer() {
+// ** Local components import
+import TimerForm from './TimerForm';
+import Timer from './Timer';
+
+function EditableTimer({
+  id,
+  title,
+  project,
+  elapsed,
+  isRunning,
+  editFormOpen,
+}) {
+  if (editFormOpen) {
+    return (
+      <TimerForm
+        id={id}
+        title=
+        {title}
+        project={project}
+      />
+    );
+  }
   return (
-    <View>
-        
-    </View>
-  )
+    <Timer
+      id={id}
+      title={title}
+      project={project}
+      elasped={elapsed}
+      isRunning={isRunning}
+    />
+  );
 }
 
 export default EditableTimer

@@ -32,20 +32,25 @@ function TimeTrackingApp() {
 }
 
 const styles = StyleSheet.create({
-    appContainer:{
-
+    appContainer: {
+        flex: 1,
     },
 
-    titleContainer:{
-
+    titleContainer: {
+        paddingTop: 35,
+        paddingBottom: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#D6D7DA',
     },
 
-    title:{
-
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
-    
-    timerList:{
 
+    timerList: {
+        paddingBottom: 15,
     },
 })
 export default TimeTrackingApp
