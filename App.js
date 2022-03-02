@@ -1,11 +1,13 @@
 import React from 'react';
-import {View } from 'react-native';
-import WeatherApp from './src/weather/WeatherApp';
+
+import TimeTrackingApp from './src/code/time-tracking/TimeTrackingApp'
+import WeatherApp from './src/code/weather/WeatherApp';
 
 export default function App() {
   return (
     <>
-      <WeatherApp />
+      {/* <WeatherApp /> */}
+      <TimeTrackingApp />
     </>
   );
 }
