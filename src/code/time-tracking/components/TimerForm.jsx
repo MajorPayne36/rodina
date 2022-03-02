@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 
     textInputContainer: {
         borderColor: '#D6D7DA',
-        borderRadius: 2,
+        borderRadius: 10,
         borderWidth: 1,
         marginBottom: 5,
     },

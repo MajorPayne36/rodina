@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         minWidth: 100,
         borderWidth: 2,
-        borderRadius: 3,
+        borderRadius: 10,
     },
 
     small:{

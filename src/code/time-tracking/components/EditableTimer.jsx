@@ -17,8 +17,7 @@ function EditableTimer({
     return (
       <TimerForm
         id={id}
-        title=
-        {title}
+        title={title}
         project={project}
       />
     );
@@ -28,7 +27,7 @@ function EditableTimer({
       id={id}
       title={title}
       project={project}
-      elasped={elapsed}
+      elapsed={elapsed}
       isRunning={isRunning}
     />
   );
