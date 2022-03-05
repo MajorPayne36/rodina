@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 // * Local import
 import TimerForm from './TimerForm';
 import Timer from './Timer';
@@ -10,8 +10,10 @@ function EditableTimer({
   project,
   elapsed,
   isRunning,
-  onFormSubmit,
   onRemovePress,
+  onFormSubmit,
+  onStartPress,
+  onStopPress,
 }) {
 
   const [editFormOpen, seteditFormOpen] = useState(false);
@@ -58,8 +60,22 @@ function EditableTimer({
       isRunning={isRunning}
       onEditPress={handleEditPress}
       onRemovePress={onRemovePress}
+      onStartPress={onStartPress}
+      onStopPress={onStopPress}
     />
   );
+}
+
+EditableTimer.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  project: PropTypes.string.isRequired,
+  elapsed: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool.isRequired,
+  onRemovePress: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onStartPress: PropTypes.func.isRequired,
+  onStopPress: PropTypes.func.isRequired,
 }
 
 export default EditableTimer

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // * Import local components
 import TimerButton from './TimerButton';
@@ -30,6 +31,7 @@ const TimerForm = ({
                 <Text style={styles.textInputTitle}>{titles}</Text>
                 <View style={styles.textInputContainer}>
                     <TextInput
+                        placeholder='Input Title name'
                         style={styles.textInput}
                         underlineColorAndroid='transparent'
                         onChangeText={settitle}
@@ -42,6 +44,7 @@ const TimerForm = ({
                 <Text style={styles.textInputTitle}>{projects}</Text>
                 <View style={styles.textInputContainer}>
                     <TextInput
+                        placeholder='Input Project name'
                         style={styles.textInput}
                         underlineColorAndroid='transparent'
                         onChangeText={setproject}
@@ -56,6 +59,20 @@ const TimerForm = ({
             </View>
         </View>
     )
+}
+
+TimerForm.propTypes = {
+    id: PropTypes.string,
+    title: PropTypes.string,
+    project: PropTypes.string,
+    onFormClose: PropTypes.func.isRequired,
+    onFormSubmit: PropTypes.func.isRequired,
+}
+
+TimerForm.defaultProps = {
+    id: null,
+    title: '',
+    project: ''
 }
 
 export default TimerForm

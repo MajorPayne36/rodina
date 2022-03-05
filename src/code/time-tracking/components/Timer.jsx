@@ -1,16 +1,34 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // * Local imports
 import TimerButton from './TimerButton'
 import { millisecondsToHuman } from '../utils/TimerUtils';
 
-const Timer = ({ id, title, project, elapsed, onEditPress, onRemovePress }) => {
+const Timer = ({ id, title, project, elapsed, onEditPress, onRemovePress, onStartPress, onStopPress, isRunning }) => {
 
   const elaspedString = millisecondsToHuman(elapsed);
 
   const handleRemovePress = () => {
     onRemovePress(id);
+  }
+
+  const handleStartPress = () => {
+    onStartPress(id);
+  }
+
+  const handleStopPress = () => {
+    onStopPress(id);
+  }
+
+  const renderActionButton = () => {
+
+    if (!isRunning) return (
+      <TimerButton color='#21BA45' title='Start' onPress={handleStartPress} />
+    ); else return (
+      <TimerButton color='#DB2828' title='Stop' onPress={handleStopPress} />
+    );
   }
 
   return (
@@ -22,12 +40,10 @@ const Timer = ({ id, title, project, elapsed, onEditPress, onRemovePress }) => {
         <TimerButton color='blue' small title='Edit' onPress={onEditPress} />
         <TimerButton color='blue' small title='Remove' onPress={handleRemovePress} />
       </View>
-      <TimerButton color='#21BA45' title='Start' />
+      {renderActionButton()}
     </View>
   )
 }
-
-export default Timer
 
 const styles = StyleSheet.create({
   timerContaier: {
@@ -56,4 +72,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-})
+});
+
+Timer.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  project: PropTypes.string.isRequired,
+  elapsed: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool.isRequired,
+  onRemovePress: PropTypes.func.isRequired,
+  onStartPress: PropTypes.func.isRequired,
+  onStopPress: PropTypes.func.isRequired,
+  onEditPress: PropTypes.func.isRequired,
+};
+
+export default Timer
