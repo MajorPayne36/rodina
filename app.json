@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "weather",
-    "slug": "weather",
+    "name": "rodina",
+    "slug": "rodina",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "weather"
+  "name": "rodina"
 }
