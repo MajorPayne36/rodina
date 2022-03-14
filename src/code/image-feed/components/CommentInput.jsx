@@ -1,11 +1,8 @@
-import { Text, View, StyleSheet } from 'react-native';
-import React, { Component } from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-// * Local inputs
-
-
-export default class CommentInput extends Component {
+export default class CommentInput extends React.Component {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired,
         placeholder: PropTypes.string,
@@ -17,11 +14,11 @@ export default class CommentInput extends Component {
 
     state = {
         text: '',
-    }
+    };
 
     handleChangeText = text => {
         this.setState({ text });
-    }
+    };
 
     handleSubmitEditing = () => {
         const { onSubmit } = this.props;
@@ -31,7 +28,7 @@ export default class CommentInput extends Component {
 
         onSubmit(text);
         this.setState({ text: '' });
-    }
+    };
 
     render() {
         const { placeholder } = this.props;
@@ -39,9 +36,16 @@ export default class CommentInput extends Component {
 
         return (
             <View style={styles.container}>
-                <Text>CommentInput</Text>
+                <TextInput
+                    style={styles.input}
+                    value={text}
+                    placeholder={placeholder}
+                    underlineColorAndroid="transparent"
+                    onChangeText={this.handleChangeText}
+                    onSubmitEditing={this.handleSubmitEditing}
+                />
             </View>
-        )
+        );
     }
 }
 

@@ -9,24 +9,31 @@ import Card from './Card';
 
 const CardList = ({
     items,
+    commentsForItem,
+    onPressComments,
 }) => {
 
     // * ------------------- Functions ------------------- * 
 
-    const keyExtractor=({ id }) => id.toString();
+    const keyExtractor = ({ id }) => id.toString();
 
-    const renderItem = ({ item: { id, author } }) => (
-        <Card
+    const renderItem = ({ item: { id, author } }) => {
+        const comments = commentsForItem[id];
+
+        return <Card
             fullname={author}
             image={{
                 uri: getImageFromId(id),
             }}
+            linkText={`${comments ? comments.length : 0} Comments`}
+            onPressLinkText={() => onPressComments(id)}
         />
-    );
+    };
 
     return (
-        <FlatList 
+        <FlatList
             data={items}
+            extraData={commentsForItem}
             renderItem={renderItem}
             keyExtractor={keyExtractor}
         />
@@ -40,6 +47,8 @@ CardList.propTypes = {
             author: PropTypes.string.isRequired,
         }),
     ).isRequired,
+    commentsForItem: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+    onPressComments: PropTypes.func.isRequired,
 }
 
 export default CardList;

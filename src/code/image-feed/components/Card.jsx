@@ -53,6 +53,6 @@ export default Card;
 const styles = StyleSheet.create({
     image: {
         aspectRatio: 1,
-        backgroundColo: 'rgba(0,0,0,0.02)',
+        backgroundColor: 'rgba(0,0,0,0.02)',
     }
 })
